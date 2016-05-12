@@ -12,11 +12,11 @@ namespace WebBookmarkBo.Service
     public class MessageBo
     {
         /// <summary>
-        /// 
+        /// 创建消息
         /// </summary>
-        /// <param name="userID"></param>
-        /// <param name="type"></param>
-        /// <param name="info"></param>
+        /// <param name="userID">消息用户ID</param>
+        /// <param name="type">消息类型</param>
+        /// <param name="info">消息相关的信息</param>
         public static void CreateMessage(long userID,MessageTypeEnum type,object info)
         {
             Task.Factory.StartNew(() => 

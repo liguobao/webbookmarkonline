@@ -126,7 +126,11 @@ namespace WebBookmarkBo.Service
             }
         }
 
-
+        /// <summary>
+        /// 加载当前用户相关的动态信息
+        /// </summary>
+        /// <param name="loginUserID"></param>
+        /// <returns></returns>
         public static List<BizUserDynamicInfo> LoadDynamicLog(long loginUserID)
         {
             var dicUserRelationship = UserRelationshipBo.GetByFollowUserID(loginUserID);
@@ -146,14 +150,29 @@ namespace WebBookmarkBo.Service
 
     public enum DynamicInfoType 
     {
+        /// <summary>
+        /// 新书签
+        /// </summary>
         NewBookmark = 0,
 
+        /// <summary>
+        /// 新书签夹
+        /// </summary>
         NewWebFolder = 1,
 
+        /// <summary>
+        /// 新关注者
+        /// </summary>
         NewFollower = 2,
 
+        /// <summary>
+        /// 新书签评论
+        /// </summary>
         NewBookmarkComment = 3,
 
+        /// <summary>
+        /// 新增点赞
+        /// </summary>
         NewLikeBookmark = 4,
 
     }

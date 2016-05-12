@@ -365,7 +365,11 @@ namespace WebBookmarkService.DAL
         }
 
 
-
+        /// <summary>
+        /// 通过父级ID获取书签夹数据
+        /// </summary>
+        /// <param name="parentWebfolderID"></param>
+        /// <returns></returns>
         public IEnumerable<UserWebFolder> GetByParentWebfolderID(long parentWebfolderID)
         {
             string sql = "SELECT * FROM tblUserWebFolder where ParentWebfolderID =@ParentWebfolderID";
@@ -375,7 +379,12 @@ namespace WebBookmarkService.DAL
             }
         }
 
-
+        /// <summary>
+        /// 通过用户ID和哈希ID获取书签夹数据
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <param name="hashcode"></param>
+        /// <returns></returns>
         public UserWebFolder GetByUserInfoIDAndHashcode(long userID, int hashcode)
         {
             string sql = "SELECT * FROM tblUserWebFolder WHERE UserInfoID = @UserInfoID AND IElementHashcode=@IElementHashcode";

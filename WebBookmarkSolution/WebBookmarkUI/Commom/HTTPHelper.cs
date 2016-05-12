@@ -14,6 +14,11 @@ namespace WebBookmarkUI.Commom
 {
     public class HTTPHelper
     {
+        /// <summary>
+        /// 获取HTML以及XFrameOptions
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
         public static Tuple< string,string> GetHTML(string url)
         {
             string htmlCode =string.Empty;

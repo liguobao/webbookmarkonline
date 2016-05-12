@@ -13,6 +13,11 @@ namespace WebBookmarkBo.Service
     {
         private static GroupUserDAL DAL = new GroupUserDAL();
 
+        /// <summary>
+        /// 移除用户群组中的某个用户
+        /// </summary>
+        /// <param name="groupUserID"></param>
+        /// <returns></returns>
         public static bool RemoverGroupUser(long groupUserID)
         {
             return DAL.DeleteByGroupUserID(groupUserID) >= 0;

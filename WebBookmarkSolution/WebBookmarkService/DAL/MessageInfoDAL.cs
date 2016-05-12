@@ -282,7 +282,11 @@ namespace WebBookmarkService.DAL
         }
 
      
-
+        /// <summary>
+        /// 获取已读消息
+        /// </summary>
+        /// <param name="userInfoID"></param>
+        /// <returns></returns>
         public IEnumerable<MessageInfo> GetHasReadListByUserInfoID(long userInfoID)
         {
             string sql = "SELECT * FROM tblMessageInfo WHERE UserInfoID = @UserInfoID and IsRead =1 order by CreateTime desc";

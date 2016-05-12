@@ -244,7 +244,11 @@ namespace WebBookmarkService.DAL
 	    #endregion
 
 
-
+        /// <summary>
+        /// 通过配置key获取配置信息
+        /// </summary>
+        /// <param name="configurationKey"></param>
+        /// <returns></returns>
         public ConfigurationInfo GetByConfigurationKey(string configurationKey)
         {
             string sql = "SELECT * FROM tblConfigurationInfo WHERE ConfigurationKey = @ConfigurationKey";
@@ -261,7 +265,11 @@ namespace WebBookmarkService.DAL
             }
         }
 
-
+        /// <summary>
+        /// 通过配置No获取配置数据
+        /// </summary>
+        /// <param name="ConfigurationNo"></param>
+        /// <returns></returns>
         public IEnumerable<ConfigurationInfo> GetByConfigurationNo(int ConfigurationNo)
         {
             string sql = "SELECT * FROM tblConfigurationInfo WHERE ConfigurationNo = @ConfigurationNo";

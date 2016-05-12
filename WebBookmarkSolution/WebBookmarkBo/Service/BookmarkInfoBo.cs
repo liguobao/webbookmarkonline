@@ -10,6 +10,11 @@ namespace WebBookmarkBo.Service
     {
         private static BookmarkInfoDAL DAL = new BookmarkInfoDAL();
 
+        /// <summary>
+        /// 批量插入书签数据
+        /// </summary>
+        /// <param name="lstBizBookmarkInfo"></param>
+        /// <returns></returns>
         public static BizResultInfo BatchSaveToDB(List<BizBookmarkInfo> lstBizBookmarkInfo)
         {
             BizResultInfo result = new BizResultInfo();
@@ -28,6 +33,11 @@ namespace WebBookmarkBo.Service
         }
 
 
+        /// <summary>
+        /// 通过用户ID获取书签数据
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <returns></returns>
         public static List<BizBookmarkInfo> LoadByUID(long uid)
         {
             var lstBiz = new List<BizBookmarkInfo>();
@@ -37,7 +47,7 @@ namespace WebBookmarkBo.Service
         }
 
         /// <summary>
-        /// 根据
+        /// 根据书签夹ID删除书签数据
         /// </summary>
         /// <param name="webfolderID"></param>
         /// <returns></returns>
@@ -46,7 +56,11 @@ namespace WebBookmarkBo.Service
             return  DAL.DeleteByWebFolderID(webfolderID) >=0;
         }
 
-
+        /// <summary>
+        /// 删除书签
+        /// </summary>
+        /// <param name="bookmarkInfoID"></param>
+        /// <returns></returns>
         public static bool DeleteByBookmarkInfoID(long bookmarkInfoID)
         {
             return DAL.DeleteByBookmarkInfoID(bookmarkInfoID) >= 0;

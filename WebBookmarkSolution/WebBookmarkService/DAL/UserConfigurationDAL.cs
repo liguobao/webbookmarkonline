@@ -247,7 +247,7 @@ namespace WebBookmarkService.DAL
 
     
         /// <summary>
-        ///
+        ///通过用户ID和配置KEY获取数据
         /// </summary>
         public UserConfiguration GetByUserInfoIDAndUserConfigurationKey(long userInfoID, string userConfigurationKey)
         {

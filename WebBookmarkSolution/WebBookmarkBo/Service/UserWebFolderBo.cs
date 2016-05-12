@@ -11,6 +11,11 @@ namespace WebBookmarkBo.Service
     {
         private static UserWebFolderDAL webFolderDAL = new UserWebFolderDAL();
 
+        /// <summary>
+        /// 批量插入
+        /// </summary>
+        /// <param name="lstBizWebfolder"></param>
+        /// <returns></returns>
         public static BizResultInfo BatchAddUserWebfolder(List<BizUserWebFolder> lstBizWebfolder)
         {
             BizResultInfo result = new BizResultInfo();

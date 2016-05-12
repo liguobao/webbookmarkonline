@@ -9,6 +9,11 @@ namespace WebBookmarkUI
 {
     public class UploadFileHelper
     {
+        /// <summary>
+        /// 上传用户头像
+        /// </summary>
+        /// <param name="requestBase"></param>
+        /// <returns></returns>
         public static BizResultInfo UploadFileToUserImg(HttpRequestBase requestBase)
         {
             BizResultInfo result = new BizResultInfo();
@@ -33,7 +38,11 @@ namespace WebBookmarkUI
            
         }
 
-
+        /// <summary>
+        /// 上传书签文件
+        /// </summary>
+        /// <param name="requestBase"></param>
+        /// <returns></returns>
         public static BizResultInfo UploadFileToUserImportFile(HttpRequestBase requestBase)
         {
             BizResultInfo result = new BizResultInfo();

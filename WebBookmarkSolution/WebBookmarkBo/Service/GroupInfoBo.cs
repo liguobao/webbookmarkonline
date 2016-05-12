@@ -14,6 +14,12 @@ namespace WebBookmarkBo.Service
         private static GroupInfoDAL DAL = new GroupInfoDAL();
 
         private static GroupUserDAL groupUserDAL = new GroupUserDAL();
+
+        /// <summary>
+        /// 删除分组
+        /// </summary>
+        /// <param name="groupID"></param>
+        /// <returns></returns>
         public static bool DeleteGroupInfo(long groupID)
         {
             if (groupID == 0)

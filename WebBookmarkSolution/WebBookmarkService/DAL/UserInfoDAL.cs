@@ -270,7 +270,11 @@ namespace WebBookmarkService.DAL
         #endregion
 	
 	
-
+        /// <summary>
+        /// 通过email或登陆名获取用户数据
+        /// </summary>
+        /// <param name="emailOrLoginName"></param>
+        /// <returns></returns>
         public UserInfo GetByUserEmailOrUserLoginName(string emailOrLoginName)
         {
             string sql = "SELECT * FROM tblUserInfo WHERE UserLoginName = @EmailOrLoginName or UserEmail = @EmailOrLoginName";
@@ -288,7 +292,11 @@ namespace WebBookmarkService.DAL
             }
         }
 
-
+        /// <summary>
+        /// 通过token获取用户数据
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
         public UserInfo GetByActivateAccountToken(string token)
         {
             string sql = "SELECT * FROM tblUserInfo WHERE ActivateAccountToken = @ActivateAccountToken";

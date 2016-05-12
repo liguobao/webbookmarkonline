@@ -77,7 +77,11 @@ namespace WebBookmarkBo.Service
             return result;
         }
 
-
+        /// <summary>
+        /// 检查email是否有效
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         public static BizResultInfo CheckUserEmail(string email)
         {
             var result = new BizResultInfo();

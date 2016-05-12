@@ -246,7 +246,11 @@ namespace WebBookmarkService.DAL
 
 
 
-
+        /// <summary>
+        /// 通过token获取数据
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
         public RetrievePasswordLog GetByToken(string token)
         {
             string sql = "SELECT * FROM tblRetrievePasswordLog WHERE Token = @Token";

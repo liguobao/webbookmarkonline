@@ -8,7 +8,11 @@ namespace WebBookmarkUI
     public class UILoginHelper
     {
 
-
+        /// <summary>
+        /// 获取登录的邮箱/用户名
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <returns></returns>
         public static string GetUIUserLoginNameOrEmail(HttpContextBase httpContext)
         {
             string loginNameOrEmail = string.Empty;
@@ -26,7 +30,11 @@ namespace WebBookmarkUI
             return loginNameOrEmail;
         }
 
-
+        /// <summary>
+        /// 获取用户密码
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <returns></returns>
         public static string GetUIUserPassword(HttpContextBase httpContext)
         {
             string password = string.Empty;
@@ -45,7 +53,11 @@ namespace WebBookmarkUI
         }
 
 
-
+        /// <summary>
+        /// 获取当前用户UID
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <returns></returns>
         public static long GetUIDFromHttpContext(HttpContextBase httpContext)
         {
             long uid = 0;
@@ -63,7 +75,13 @@ namespace WebBookmarkUI
             return uid;
         }
 
-
+        /// <summary>
+        /// 写入用户登录信息
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <param name="loginNameOrEmail"></param>
+        /// <param name="password"></param>
+        /// <param name="httpContext"></param>
         public static void WriteUserInfo(string uid, string loginNameOrEmail, string password, HttpContextBase httpContext)
         {
             HttpCookie cookie = new HttpCookie("UserInfo");
@@ -78,7 +96,11 @@ namespace WebBookmarkUI
         }
 
 
-
+        /// <summary>
+        /// 校验是否已登录
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <returns></returns>
         public static bool CheckUserLogin(HttpContextBase httpContext)
         {
             var rsp = UserInfoBo.UserLogin(GetUIUserLoginNameOrEmail(httpContext), GetUIUserPassword(httpContext));

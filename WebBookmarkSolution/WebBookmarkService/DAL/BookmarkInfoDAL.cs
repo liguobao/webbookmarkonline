@@ -397,9 +397,17 @@ namespace WebBookmarkService.DAL
             }
         }
 
+        /// <summary>
+        /// 获取某书签相同域名的书签数据
+        /// </summary>
+        /// <param name="bookmarkInfoID">书签ID</param>
+        /// <param name="starIndex">分页起始ID</param>
+        /// <param name="length">分页数量</param>
+        /// <returns></returns>
         public IEnumerable<BookmarkInfo> GetSameHostBookmarkByBookmarkID(long bookmarkInfoID,int starIndex =0,int length=0)
         {
-            string sql = "SELECT * FROM webbookmark.tblBookmarkInfo leftInfo JOIN tblBookmarkInfo rightInfo ON leftInfo.host = rightInfo.host WHERE rightInfo.BookmarkInfoID = @BookmarkInfoID AND rightInfo.userinfoid != leftInfo.userinfoid";
+            string sql = @"SELECT * FROM webbookmark.tblBookmarkInfo leftInfo JOIN tblBookmarkInfo rightInfo ON leftInfo.host = rightInfo.host
+                          WHERE rightInfo.BookmarkInfoID = @BookmarkInfoID AND rightInfo.userinfoid != leftInfo.userinfoid";
 
             if(length!=0)
             {
@@ -419,7 +427,13 @@ namespace WebBookmarkService.DAL
             }
         }
 
-
+        /// <summary>
+        /// 随机获取书签数据
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <param name="index"></param>
+        /// <param name="length"></param>
+        /// <returns></returns>
         public IEnumerable<BookmarkInfo> GetRandomListByUserID(long userID,int index,int length)
         {
             string sql = @"SELECT 

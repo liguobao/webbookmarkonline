@@ -256,7 +256,11 @@ namespace WebBookmarkService.DAL
             return MyDBHelper.ExecuteNonQuery(sql, para) >=0;
         }
 
-
+        /// <summary>
+        /// 通过用户ID获取用户的所有群组信息
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <returns></returns>
         public IEnumerable<GroupUser> GetListByUserID(long userID)
         {
             string sql = "SELECT * FROM tblGroupUser WHERE UserInfoID = @UserInfoID";
@@ -267,7 +271,11 @@ namespace WebBookmarkService.DAL
             }
         }
 
-
+        /// <summary>
+        /// 通过群组ID获取群组用户
+        /// </summary>
+        /// <param name="groupInfoID"></param>
+        /// <returns></returns>
         public IEnumerable<GroupUser> GetListByGroupInfoID(long groupInfoID)
         {
             string sql = "SELECT * FROM tblGroupUser WHERE GroupInfoID = @GroupInfoID";
@@ -278,7 +286,11 @@ namespace WebBookmarkService.DAL
             }
         }
 
-
+        /// <summary>
+        /// 批量群组ID获取群组用户
+        /// </summary>
+        /// <param name="groupInfoIDs"></param>
+        /// <returns></returns>
         public IEnumerable<GroupUser> GetListByGroupInfoIDs(List<long> groupInfoIDs)
         {
             if (groupInfoIDs == null || groupInfoIDs.Count == 0)
@@ -290,6 +302,12 @@ namespace WebBookmarkService.DAL
             }
         }
 
+        /// <summary>
+        /// 获取某用户的群组信息
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <param name="groupID"></param>
+        /// <returns></returns>
         public GroupUser GetByUserIDAndGroupInfoID(long uid,long groupID)
         {
             string sql = "SELECT * FROM tblGroupUser WHERE GroupInfoID = @GroupInfoID and UserInfoID = @UserInfoID";

@@ -283,7 +283,12 @@ namespace WebBookmarkService.DAL
         }
 
 
-
+        /// <summary>
+        /// 通过书签ID和标签ID获取标签数据
+        /// </summary>
+        /// <param name="bookmarkInfoID"></param>
+        /// <param name="tagInfoID"></param>
+        /// <returns></returns>
         public BookmarkTagInfo GetByBookmarkInfoIDAndTagInfoID(long bookmarkInfoID,long tagInfoID)
         {
             string sql = "SELECT * FROM tblBookmarkTagInfo WHERE BookmarkInfoID = @BookmarkInfoID AND TagInfoID=@TagInfoID";
