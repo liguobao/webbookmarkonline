@@ -1,0 +1,67 @@
+﻿
+@model WebBookmarkUI.Models.UIWebFolderInfo
+
+ @if (Model != null && Model.ChildrenFolderList != null)
+    {
+     
+           <tr>
+                <td><span class="am-icon-folder"></span></td>
+               <td><span name="openfolder" class="am-icon-reply"><div name="divFolderID" style="display:none"> @Model.ParentWebfolderID</div></span>
+               <td></td>
+               <td></td>
+            </tr>
+     
+     
+        foreach (var folder in Model.ChildrenFolderList)
+        {
+            <tr>
+                <td><span class="am-icon-folder"></span></td>
+                <td>@folder.WebFolderName  <span class="am-icon-folder-open-o" name="openfolder"><div name="divFolderID" style="display:none"> @folder.UserWebFolderID</div></span>
+                <td>@folder.CreateTime</td>
+                <td>
+                    <div class="am-btn-toolbar">
+                        <div class="am-btn-group am-btn-group-xs">
+                            <button class="am-btn am-btn-default am-btn-xs am-text-secondary" id="folderedit">
+                                <div id="model" hidden>@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(folder))</div>
+                                <span class="am-icon-pencil-square-o"></span> 修改
+                            </button>
+                            &nbsp;&nbsp;  &nbsp;&nbsp;
+                            <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only delete" id="delete" value="folder" style="margin-left:5px">
+                                <div name="infoID" style="display:none"> @folder.UserWebFolderID</div>
+                                <div name="ParentWebfolderID" hidden>@folder.ParentWebfolderID</div>
+                                <span class="am-icon-trash-o"></span> 删除
+                            </button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+
+
+        foreach (var bookmark in Model.UIBookmarkInfoList)
+        {
+            <tr>
+                <td><samp class="am-icon-bookmark"></samp></td>
+                <td><a href='@Url.Content("~/ShowBookmarkInfo?bookmarkID="+@bookmark.BookmarkInfoID)' target='_blank'>@bookmark.BookmarkName  </a></td>
+                <td>@bookmark.CreateTime</td>
+                <td>
+                    <div class="am-btn-toolbar">
+                        <div class="am-btn-group am-btn-group-xs">
+                            <button class="am-btn am-btn-default am-btn-xs am-text-secondary" id="bookmarkedit">
+                                <div id="model" hidden>@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(bookmark))</div>
+                                <span class="am-icon-pencil-square-o"></span> 修改
+                            </button>
+                          
+                            <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" id="delete" value="bookmark" style="margin-left:5px">
+                                <div name="infoID" style="display:none"> @bookmark.BookmarkInfoID</div>
+                                <div name="ParentWebfolderID" hidden>@bookmark.UserWebFolderID</div>
+                               <span class="am-icon-trash-o"></span> 删除
+                            </button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+
+
+    }

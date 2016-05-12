@@ -1,0 +1,83 @@
+﻿@model List<WebBookmarkUI.Models.UIUserGroupInfo>
+
+<div class="mod-body">
+    <div class="tab-content" style="margin-top:10px;">
+        <div class="tab-pane active">
+            <div id="search_result">
+
+                @if (Model != null)
+                {
+                    var loginUid = WebBookmarkUI.UILoginHelper.GetUIDFromHttpContext(this.Context);
+
+                    foreach (var userGroup in Model)
+                    {
+                       
+                        <div class="aw-item">
+                            <div class="am-u-md-1">
+                                @if (!string.IsNullOrEmpty(userGroup.GroupUserInfo.UserImagURL))
+                                {
+
+                                    <a href='@Url.Content(@userGroup.GroupUserInfo.UserImagURL)' class="aw-user-img"><img src='@Url.Content(@userGroup.GroupUserInfo.UserImagURL)' alt="" width="60" height="60"></a>
+                                }
+                                else
+                                {
+                                    <a href='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/200/h/200/q/80' class="aw-user-img"><img src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/200/h/200/q/80' alt="" width="50" height="50"></a>
+                                }
+                            </div>
+
+                          
+                            <p class="aw-title">
+                                <a href='@Url.Content("~/UserInfo/ShowUserDetail?uid=" + userGroup.GroupUserInfo.UserInfoID)' id="showUserInfo" data-id='@userGroup.GroupUserInfo.UserInfoID'>@userGroup.GroupUserInfo.UserName / @userGroup.GroupUserInfo.UserEmail</a>
+                            </p>
+
+                            @if (userGroup.IsPass == 1)
+                            {
+                                <div class="am-text-success" >已通过 &nbsp; &nbsp;&nbsp;<span class="am-icon-check"></span>&nbsp; &nbsp;&nbsp;
+                                @if (userGroup.GroupInfo.CreateUesrID == loginUid && userGroup.UserInfoID != loginUid)
+                                 {
+                                     <a><span class="am-icon-remove" id="btnRemove" data-id='@userGroup.GroupUserID'>移出群组</span></a>
+                                 }
+                            
+                                 </div>
+                                
+                            }
+                            else if (userGroup.IsPass==0)
+                            {
+                                <div class="am-text-success">等待审核 &nbsp;&nbsp;<span class="am-icon-bolt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                 @if (userGroup.GroupInfo.CreateUesrID == loginUid)
+                                 {
+                                      <a id="btnPass" data-id='@userGroup.GroupUserID'><span class="am-icon-check">通过</span></a>
+                                      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                      <a id="btnReject" data-id='@userGroup.GroupUserID'><span class="am-icon-remove am-text-danger">驳回</span></a>
+                                 }
+                                 </div>
+                            }
+
+                            <p class="aw-article-content">
+                                @if (!string.IsNullOrEmpty(userGroup.GroupUserInfo.UserInfoComment))
+                                {
+                                    <span>
+                                        简介： @userGroup.GroupUserInfo.UserInfoComment
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span>
+                                        简介： 这个用户还没来得及给自己写简介呢。
+                                    </span>
+                                }
+
+                            </p>
+
+                           
+                            
+
+                            
+                        </div>
+                    }
+
+                }
+            </div>
+        </div>
+    </div>
+</div>

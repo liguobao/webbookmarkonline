@@ -1,0 +1,131 @@
+﻿@using WebBookmarkUI
+
+@if (UILoginHelper.CheckUserLogin(this.Context) == false)
+{
+    Response.Redirect("login");
+}
+else
+{
+    var loginUID = UILoginHelper.GetUIDFromHttpContext(this.Context);
+    <!doctype html>
+    <html class="no-js">
+  
+    <head>
+        <script src="~/assets/js/jquery.min.js"></script>
+        <script src="~/Scripts/jQueryFileUpload/vendor/jquery.ui.widget.js"></script>
+        <script src="~/Scripts/jQueryFileUpload/jquery.iframe-transport.js"></script>
+        <script src="~/Scripts/jQueryFileUpload/jquery.fileupload.js"></script>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>WebBookmark UI</title>
+        <meta name="description" content="WebBookmark">
+        <meta name="keywords" content="user">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="Cache-Control" content="no-siteapp" />
+        <meta name="apple-mobile-web-app-title" content="WebBookmark UI" />
+        <link rel="icon" type="image/png" href="~/assets/i/favicon.png">
+        <link rel="apple-touch-icon-precomposed" href="~/assets/i/app-icon72x72@2x.png">
+        <link rel="stylesheet" href="~/assets/css/amazeui.min.css" />
+        <link rel="stylesheet" href="~/assets/css/admin.css">
+        <link href="~/assets/login/common.css" rel="stylesheet" />
+        <link href="~/assets/login/icon.css" rel="stylesheet" />
+        <link href="~/assets/login/link.css" rel="stylesheet" />
+        <link href="~/assets/login/style.css" rel="stylesheet" />
+        <link href="~/assets/login/new.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!--[if lte IE 9]>
+        <p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+          以获得更好的体验！</p>
+        <![endif]-->
+        <header class="am-topbar admin-header">
+            <div class="am-topbar-brand">
+                <strong>WebBookmark</strong> <small>个人中心</small>
+            </div>
+            <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+            <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+                <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+                    <li><a href="~/MessageList"><span class="am-icon-envelope-o"></span> 收件箱 <span class="am-badge am-badge-warning">@WebBookmarkBo.Model.BizMessageInfo.GetNotReadMessageCount(loginUID)</span></a></li>
+                    <li class="am-dropdown" data-am-dropdown>
+                        <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+                            <span class="am-icon-gears"></span> 设置 <span class="am-icon-caret-down"></span>
+                        </a>
+                        <ul class="am-dropdown-content">
+                            <li><a href="~/UserInfo/ShowUserDetail?uid=@loginUID"><span class="am-icon-user"></span> 我的资料</a></li>
+                            <li><a href="~/UserInfo"><span class="am-icon-edit"></span>修改资料</a></li>
+                            <li><a href="~/UserInfo/ModifyPasswordIndex"><span class="am-icon-bug"></span> 修改密码</a></li>
+                            <li><a href="~/Login"><span class="am-icon-power-off"></span> 退出</a></li>
+                        </ul>
+                    </li>
+                    <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen"><span class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
+                </ul>
+            </div>
+        </header>
+        <div class="am-cf admin-main">
+            <!-- sidebar start -->
+            <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
+                <div class="am-offcanvas-bar admin-offcanvas-bar">
+                    <ul class="am-list admin-sidebar-list">
+                        <li><a href="~/Default"><span class="am-icon-home"></span> 首页</a></li>
+                        <li><a href="~/InterestRecommend"><span class="am-icon-search"></span> 探索/发现</a></li>
+                        <li class="admin-parent">
+                            <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> 用户群组 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                            <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+                                <li><a href="~/GroupInfo" class=" am-cf"><span class="am-icon-group"></span> 我的群组</a></li>
+
+                                <li><a href="~/ShowMyAllGroup"><span class="am-icon-bug"></span>我的申请</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="am-cf" data-am-collapse="{target: '#WebBookmarkcollapse-nav'}">
+                            <span class="am-icon-bookmark"></span> 个人书签夹 
+                            <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                            <ul class="am-list am-collapse admin-sidebar-sub am-in" id="WebBookmarkcollapse-nav">
+                                <li><a href="~/WebBookmarkTable"><span class="am-icon-th"></span> 全部书签夹</a></li>
+                                <li><a href="~/WebBookmarkTable/ImportWebBookmark"><span class="am-icon-calendar"></span> 导入数据</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="~/login"><span class="am-icon-sign-out"></span> 注销</a></li>
+                    </ul>
+                    <div class="am-panel am-panel-default admin-sidebar-panel">
+                        <div class="am-panel-bd">
+                            <p><span class="am-icon-bookmark"></span> 公告</p>
+                            <p>时光静好，与君语；细水流年，与君同。—— WebBookmark</p>
+                        </div>
+                    </div>
+                    <div class="am-panel am-panel-default admin-sidebar-panel">
+                        <div class="am-panel-bd">
+                            <p><span class="am-icon-tag"></span> wiki</p>
+                            <p>Welcome to the WebBookmark!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- sidebar end -->
+            <!-- content start -->
+            <div class="admin-content">
+                @RenderBody()
+            </div>
+            <!-- content end -->
+        </div>
+        <a href="#" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
+        <footer>
+            <hr>
+            <p class="am-padding-left">Copyright © 2016, All Rights Reserved.</p>
+        </footer>
+        <!--[if lt IE 9]>
+        <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+        <script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+        <![endif]-->
+        <!--[if (gte IE 9)|!(IE)]><!-->
+        <!--<![endif]-->
+        <script src="~/assets/js/amazeui.min.js"></script>
+        <script src="~/assets/js/app.js"></script>
+    </body>
+    </html>
+}
+
+
