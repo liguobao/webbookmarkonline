@@ -15,7 +15,11 @@ namespace WebBookmarkUI.Controllers
 {
     public class WebBookmarkTableController : Controller
     {
-        // GET: WebBookmarkTable
+        /// <summary>
+        /// 显示书签夹
+        /// </summary>
+        /// <param name="folderID"></param>
+        /// <returns></returns>
         public ActionResult Index(long folderID=0)
         {
             long uid = UILoginHelper.GetUIDFromHttpContext(HttpContext);
@@ -48,7 +52,11 @@ namespace WebBookmarkUI.Controllers
             return View(model);
         }
 
-
+        /// <summary>
+        /// 显示某个书签夹数据
+        /// </summary>
+        /// <param name="folderID"></param>
+        /// <returns></returns>
         public ActionResult ShowFolderTable(long folderID)
         {
             long uid = UILoginHelper.GetUIDFromHttpContext(HttpContext);
@@ -81,6 +89,11 @@ namespace WebBookmarkUI.Controllers
             return View("ShowFolderTable", model);
         }
 
+        /// <summary>
+        /// 显示当前书签夹次级书签夹数据（用于下拉框）
+        /// </summary>
+        /// <param name="folderID"></param>
+        /// <returns></returns>
         public ActionResult ShowAddFolderOrBookmarkView(long folderID)
         {
             long uid = UILoginHelper.GetUIDFromHttpContext(HttpContext);
@@ -116,7 +129,11 @@ namespace WebBookmarkUI.Controllers
 
 
 
-
+        /// <summary>
+        /// FolderModel json转换成Model
+        /// </summary>
+        /// <param name="strModel"></param>
+        /// <returns></returns>
         public ActionResult ConvertToUIWebFolderInfo(string strModel)
         {
             UIWebFolderInfo folderInfo = null;
@@ -131,7 +148,11 @@ namespace WebBookmarkUI.Controllers
         }
 
 
-
+        /// <summary>
+        /// Bookmark json 转换成Model
+        /// </summary>
+        /// <param name="strModel"></param>
+        /// <returns></returns>
         public ActionResult ConvertToUIBookmarkInfo(string strModel)
         {
             UIBookmarkInfo bookmark = null;
@@ -146,7 +167,15 @@ namespace WebBookmarkUI.Controllers
             return Json(bookmark);
         }
 
-
+        /// <summary>
+        /// 添加书签/书签夹
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="href"></param>
+        /// <param name="folderID"></param>
+        /// <param name="type"></param>
+        /// <param name="infoID"></param>
+        /// <returns></returns>
         public ActionResult AddBookmark(string name,string href,long folderID,string type,long infoID)
         {
             BizResultInfo result = new BizResultInfo();
@@ -214,7 +243,12 @@ namespace WebBookmarkUI.Controllers
 
         }
 
-
+        /// <summary>
+        /// 删除书签/书签夹
+        /// </summary>
+        /// <param name="infoID"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public ActionResult DeleteBookmarkOrWebFolder(long infoID,string type)
         {
             BizResultInfo result = new BizResultInfo();
@@ -241,12 +275,20 @@ namespace WebBookmarkUI.Controllers
             return Json(result);
         }
         
-
+        /// <summary>
+        /// 导入书签文件主页
+        /// </summary>
+        /// <returns></returns>
         public ActionResult ImportWebBookmark()
         {
             return View();
         }
 
+        /// <summary>
+        /// 保存书签数据到数据库
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
         public ActionResult ImportWebBookmarkToDB(string filePath)
         {
             BizResultInfo result = new BizResultInfo();
@@ -268,7 +310,10 @@ namespace WebBookmarkUI.Controllers
 
       
 
-
+        /// <summary>
+        /// 上传书签文件到系统
+        /// </summary>
+        /// <returns></returns>
         public ActionResult UploadWebBookmarkFile()
         {
             var result = UploadFileHelper.UploadFileToUserImportFile(Request);
@@ -285,12 +330,21 @@ namespace WebBookmarkUI.Controllers
             return Json(result);
         }
 
+        /// <summary>
+        /// 预览书签文件
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public FileResult PreView(string path)
         {
             return File(path, "text/html");
         }
 
-
+        /// <summary>
+        /// 展示书签数据
+        /// </summary>
+        /// <param name="folderID"></param>
+        /// <returns></returns>
         public ActionResult ShowUserAllFolder(long folderID)
         {
             long uid = UILoginHelper.GetUIDFromHttpContext(HttpContext);

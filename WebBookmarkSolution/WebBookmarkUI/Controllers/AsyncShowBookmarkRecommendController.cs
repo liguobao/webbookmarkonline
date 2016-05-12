@@ -10,10 +10,13 @@ using WebBookmarkUI.Models;
 
 namespace WebBookmarkUI.Controllers
 {
+    /// <summary>
+    /// 书签推荐异步control
+    /// </summary>
     public class AsyncShowBookmarkRecommendController : AsyncController
     {
         /// <summary>
-        /// 异步
+        /// 使用IOCP异步方式返回书签推荐数据
         /// </summary>
         /// <returns></returns>
         public Task<ViewResult> Show()
@@ -51,7 +54,10 @@ namespace WebBookmarkUI.Controllers
             .ContinueWith(t => View(t.Result));
         }
 
-
+        /// <summary>
+        /// 功能同上，此处为同步返回数据
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             var loginUID = UILoginHelper.GetUIDFromHttpContext(HttpContext);

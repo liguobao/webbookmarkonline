@@ -8,10 +8,12 @@ using WebBookmarkUI.Models;
 
 namespace WebBookmarkUI.Controllers
 {
+    /// <summary>
+    /// 用户推荐页面
+    /// </summary>
     public class UserRecommendController : Controller
     {
-        //
-        // GET: /User/
+        
 
         public ActionResult Index()
         {

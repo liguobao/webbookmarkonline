@@ -12,10 +12,16 @@ using System.Text;
 
 namespace WebBookmarkUI.Controllers
 {
+    /// <summary>
+    /// 书签详情页
+    /// </summary>
     public class ShowBookmarkInfoController : Controller
     {
-        //
-        // GET: /ShowBookmarkInfo/
+        /// <summary>
+        /// 展示书签数据
+        /// </summary>
+        /// <param name="bookmarkID"></param>
+        /// <returns></returns>
 
         public ActionResult Index(long bookmarkID)
         {
@@ -62,6 +68,13 @@ namespace WebBookmarkUI.Controllers
             return View(model);
         }
 
+
+        /// <summary>
+        /// 展示HTML
+        /// </summary>
+        /// <param name="bookmarkID"></param>
+        /// <param name="url"></param>
+        /// <returns></returns>
         public ActionResult ShowBookmarkHTML(long bookmarkID,string url)
         {
             UIBookmarkInfo model = null;
@@ -112,7 +125,11 @@ namespace WebBookmarkUI.Controllers
         }
 
 
-
+        /// <summary>
+        /// 展示书签评论
+        /// </summary>
+        /// <param name="bookmarkID"></param>
+        /// <returns></returns>
         public ActionResult ShowBookmarkComment(long bookmarkID)
         {
             var lstBookmarkComment = BizBookmarkComment.LoadByBookmarkInfoID(bookmarkID);
@@ -155,7 +172,12 @@ namespace WebBookmarkUI.Controllers
             return PartialView("ShowBookmarkComment", Tuple.Create<IEnumerable<UICommentInfo>,UIUserInfo>(lstComment,uiLoginUserInfo)); 
         }
 
-
+        /// <summary>
+        /// 保存新评论
+        /// </summary>
+        /// <param name="bookmarkID"></param>
+        /// <param name="content"></param>
+        /// <returns></returns>
         public ActionResult SaveBookmarkComment(long bookmarkID, string content)
         {
 
@@ -196,7 +218,13 @@ namespace WebBookmarkUI.Controllers
             return Json(result);
         }
 
-
+        /// <summary>
+        /// 保存书签标签
+        /// </summary>
+        /// <param name="bookmarkID"></param>
+        /// <param name="tagInfoID"></param>
+        /// <param name="tagName"></param>
+        /// <returns></returns>
         public ActionResult SaveBookmarkTag(long bookmarkID,long tagInfoID=0,string tagName="")
         {
             BizResultInfo result = new BizResultInfo();
@@ -232,6 +260,13 @@ namespace WebBookmarkUI.Controllers
         }
 
 
+        /// <summary>
+        /// 移除标签
+        /// </summary>
+        /// <param name="bookmarkID"></param>
+        /// <param name="bookmarkTagInfoID"></param>
+        /// <param name="tagName"></param>
+        /// <returns></returns>
         public ActionResult RemoveBookmarkTag(long bookmarkID,long bookmarkTagInfoID=0,string tagName="")
         {
             BizResultInfo result = new BizResultInfo();
@@ -257,7 +292,11 @@ namespace WebBookmarkUI.Controllers
             return Json(result);
         }
 
-
+        /// <summary>
+        /// 新增点赞
+        /// </summary>
+        /// <param name="bookmarkID"></param>
+        /// <returns></returns>
         public ActionResult AddBookmarkLikeLog(long bookmarkID)
         {
             BizResultInfo result = new BizResultInfo();
@@ -300,7 +339,11 @@ namespace WebBookmarkUI.Controllers
 
         }
 
-
+        /// <summary>
+        /// 收藏当前书签到默认书签夹
+        /// </summary>
+        /// <param name="bookmarkID"></param>
+        /// <returns></returns>
         public ActionResult CollectBookmarkToUserDefaultFolder(long bookmarkID)
         {
             BizResultInfo result = new BizResultInfo();
@@ -338,6 +381,11 @@ namespace WebBookmarkUI.Controllers
             return Json(result);
         }
 
+        /// <summary>
+        /// 获取用户默认书签夹ID
+        /// </summary>
+        /// <param name="loginUID"></param>
+        /// <returns></returns>
         private static long GetUserDefaultFolderID(long loginUID)
         {
             long folderID = 0;
@@ -373,6 +421,13 @@ namespace WebBookmarkUI.Controllers
 
         #region GetUserDefaultFolderID 私有方法
 
+        /// <summary>
+        /// 新建默认书签夹同时把默认书签夹添加至用户配置表（当前用户已有书签夹）
+        /// </summary>
+        /// <param name="loginUID"></param>
+        /// <param name="folderID"></param>
+        /// <param name="folderConfiguration"></param>
+        /// <param name="firstFolder"></param>
         private static void NewFolderAndConfigurationHasParentFolderID(long loginUID, ref long folderID, ref BizUserConfiguration folderConfiguration,
             IEnumerable<BizUserWebFolder> firstFolder)
         {
@@ -397,6 +452,12 @@ namespace WebBookmarkUI.Controllers
             folderConfiguration.Save();
         }
 
+        /// <summary>
+        /// 新建默认书签夹同时把默认书签夹添加至用户配置表（当前用户未有任何数据）
+        /// </summary>
+        /// <param name="loginUID"></param>
+        /// <param name="folderID"></param>
+        /// <param name="folderConfiguration"></param>
         private static void NewFolderAndConfigurationNoParentFolderID(long loginUID, ref long folderID, ref BizUserConfiguration folderConfiguration)
         {
             BizUserWebFolder newFolder = new BizUserWebFolder();

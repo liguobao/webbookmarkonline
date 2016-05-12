@@ -10,6 +10,9 @@ using WebBookmarkBo;
 
 namespace WebBookmarkUI.Controllers
 {
+    /// <summary>
+    /// 注册页面
+    /// </summary>
     public class RegisterController : Controller
     {
         // GET: Register
@@ -18,7 +21,11 @@ namespace WebBookmarkUI.Controllers
             return View();
         }
 
-        
+        /// <summary>
+        /// 注册操作
+        /// </summary>
+        /// <param name="uiUserInfo"></param>
+        /// <returns></returns>
         public ActionResult RegisterUser(UIUserInfo uiUserInfo)
         {
             var bizUserInfo = new BizUserInfo();
@@ -46,13 +53,21 @@ namespace WebBookmarkUI.Controllers
             return Json(result);
         }
 
-
+        /// <summary>
+        /// 检查邮箱是否可用
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         public ActionResult CheckUserEmail(String email)
         {
             return Json(UserInfoBo.CheckUserEmail(email));
         }
 
-
+        /// <summary>
+        /// 激活账号
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
         public ActionResult ActivateAccount(string token)
         {
             BizResultInfo result = new BizResultInfo();

@@ -11,6 +11,9 @@ using WebBookmarkService;
 
 namespace WebBookmarkUI.Controllers
 {
+    /// <summary>
+    /// 新增书签control，用于快速书签工具
+    /// </summary>
     public class AddBookmarkController : Controller
     {
         //
@@ -21,6 +24,13 @@ namespace WebBookmarkUI.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 接收浏览器通过点击书签post过来的数据，自动为用户添加书签
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="uid"></param>
+        /// <param name="folderID"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Add(string url,long uid,long folderID)
         {

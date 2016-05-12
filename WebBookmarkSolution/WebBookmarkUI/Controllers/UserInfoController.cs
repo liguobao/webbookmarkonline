@@ -9,10 +9,16 @@ using WebBookmarkUI.Models;
 
 namespace WebBookmarkUI.Controllers
 {
+    /// <summary>
+    /// 用户信息相关页面
+    /// </summary>
     public class UserInfoController : Controller
     {
        
-        // GET: UserInfo
+        /// <summary>
+        /// 当前用户信息
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             UIUserInfo uiUserInfo = null;
@@ -39,14 +45,22 @@ namespace WebBookmarkUI.Controllers
             return View(uiUserInfo);
         }
 
-
+        /// <summary>
+        /// 保存用户信息
+        /// </summary>
+        /// <param name="uiUserInfo"></param>
+        /// <returns></returns>
         public ActionResult SaveUserInfo(UIUserInfo uiUserInfo)
         {
             var loginEmail = UILoginHelper.GetUIUserLoginNameOrEmail(HttpContext);
             return Json(SaveUserToDB(loginEmail, uiUserInfo));
         }
 
-
+        /// <summary>
+        /// 检查邮箱是否有效
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         public ActionResult CheckUserEmail(string email)
         {
             var cookieLoginName = UILoginHelper.GetUIUserLoginNameOrEmail(HttpContext);
@@ -69,6 +83,11 @@ namespace WebBookmarkUI.Controllers
             return Json(result);
         }
 
+        /// <summary>
+        /// 检查登录名是否可用
+        /// </summary>
+        /// <param name="loginName"></param>
+        /// <returns></returns>
         public ActionResult CheckUserLoginName(string loginName)
         {
             var cookieLoginName = UILoginHelper.GetUIUserLoginNameOrEmail(HttpContext);
@@ -89,6 +108,12 @@ namespace WebBookmarkUI.Controllers
         }
 
 
+        /// <summary>
+        /// 保存用户数据到数据库
+        /// </summary>
+        /// <param name="loginEmail"></param>
+        /// <param name="uiUserInfo"></param>
+        /// <returns></returns>
         private BizResultInfo SaveUserToDB(String loginEmail, UIUserInfo uiUserInfo)
         {
            var result = UserInfoBo.GetUserInfoByLoginNameOrEmail(loginEmail);
@@ -113,7 +138,10 @@ namespace WebBookmarkUI.Controllers
             return (result);
         }
 
-
+        /// <summary>
+        /// 保存用户头像
+        /// </summary>
+        /// <returns></returns>
         public ActionResult SaveUserImag()
         {
             BizResultInfo result = UploadFileHelper.UploadFileToUserImg(Request);
@@ -135,13 +163,21 @@ namespace WebBookmarkUI.Controllers
         }
 
 
+        /// <summary>
+        /// 展示用户资料
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <returns></returns>
         public ActionResult ShowUserDetail(long uid)
         {
             return View(uid);
         }
 
 
-
+        /// <summary>
+        /// 修改密码页面
+        /// </summary>
+        /// <returns></returns>
         public ActionResult ModifyPasswordIndex()
         {
             UIUserInfo uiUserInfo = null;
@@ -170,6 +206,12 @@ namespace WebBookmarkUI.Controllers
         }
 
 
+        /// <summary>
+        /// 保存密码
+        /// </summary>
+        /// <param name="oldpassword"></param>
+        /// <param name="newpassword"></param>
+        /// <returns></returns>
         public ActionResult SavePassword(string oldpassword,string newpassword)
         {
             BizResultInfo  result = new BizResultInfo();

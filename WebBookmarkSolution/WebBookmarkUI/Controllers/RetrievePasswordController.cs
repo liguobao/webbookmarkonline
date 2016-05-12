@@ -20,6 +20,11 @@ namespace WebBookmarkUI.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 发送重置密码邮件
+        /// </summary>
+        /// <param name="emailAccount"></param>
+        /// <returns></returns>
         public ActionResult SendRetrievePasswordEmail(string emailAccount)
         {
 
@@ -67,11 +72,22 @@ namespace WebBookmarkUI.Controllers
             return Json(result);
         }
 
+        /// <summary>
+        /// 重置密码页面
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
         public ActionResult ModifyIndex(string token)
         {
             return View();
         }
 
+        /// <summary>
+        /// 重置密码
+        /// </summary>
+        /// <param name="token"></param>
+        /// <param name="newPassword"></param>
+        /// <returns></returns>
         public ActionResult RetrievePassword(string token, string newPassword)
         {
             BizResultInfo result = new BizResultInfo();
@@ -130,7 +146,11 @@ namespace WebBookmarkUI.Controllers
         }
 
 
-
+        /// <summary>
+        /// 检查邮箱是否有效
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         public ActionResult CheckUserEmail(String email)
         {
             return Json(UserInfoBo.CheckUserEmail(email));

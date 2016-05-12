@@ -10,6 +10,9 @@ using WebBookmarkBo;
 
 namespace WebBookmarkUI.Controllers
 {
+    /// <summary>
+    /// 展示用户关注者/被关注者信息
+    /// </summary>
     public class FollowerController : Controller
     {
         //
@@ -24,7 +27,7 @@ namespace WebBookmarkUI.Controllers
         /// <summary>
         /// 用户所关注的人
         /// </summary>
-        /// <returns></returns>
+        /// <returns>返回分部视图</returns>
         [SessionUserParameterAttribute]
         public ActionResult ShowUserFollow(long uid=0)
         {
@@ -58,7 +61,7 @@ namespace WebBookmarkUI.Controllers
         /// <summary>
         /// 关注用户的人
         /// </summary>
-        /// <returns></returns>
+        /// <returns>返回分部视图</returns>
         [SessionUserParameterAttribute]
         public ActionResult ShowUserBeFollwed(long uid = 0)
         {

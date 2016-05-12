@@ -10,9 +10,16 @@ using WebBookmarkBo;
 
 namespace WebBookmarkUI.Controllers
 {
+    /// <summary>
+    /// 登录页面
+    /// </summary>
     public class LoginController : Controller
     {
-        // GET: Login
+        /// <summary>
+        /// 展示用户名
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <returns></returns>
         public ActionResult Index(string uid="")
         {
             UIUserInfo uiUserInfo = null;
@@ -34,6 +41,11 @@ namespace WebBookmarkUI.Controllers
         }
 
 
+        /// <summary>
+        /// 登录操作
+        /// </summary>
+        /// <param name="uiUserInfo"></param>
+        /// <returns></returns>
         public ActionResult UserLogin(UIUserInfo uiUserInfo)
         {
             string logionName = string.IsNullOrEmpty(uiUserInfo.LoginName) ? uiUserInfo.UserEmail : uiUserInfo.LoginName;
@@ -48,10 +60,7 @@ namespace WebBookmarkUI.Controllers
         }
 
 
-        public ActionResult ForgetPassWord(string  email)
-        {
-            return null;
-        }
+      
        
     }
 }

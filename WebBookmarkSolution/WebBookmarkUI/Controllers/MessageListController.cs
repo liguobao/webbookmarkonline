@@ -17,6 +17,10 @@ namespace WebBookmarkUI.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 所有的消息
+        /// </summary>
+        /// <returns></returns>
         public ActionResult ShowAllMessage()
         {
             var loginUID = UILoginHelper.GetUIDFromHttpContext(HttpContext);
@@ -24,6 +28,10 @@ namespace WebBookmarkUI.Controllers
             return View("ShowAllMessage", lstModel);
         }
 
+        /// <summary>
+        /// 未读消息
+        /// </summary>
+        /// <returns></returns>
         public ActionResult ShowNotReadMessage()
         {
             var loginUID = UILoginHelper.GetUIDFromHttpContext(HttpContext);
@@ -31,6 +39,10 @@ namespace WebBookmarkUI.Controllers
             return View("ShowNotReadMessage", lstModel);
         }
 
+        /// <summary>
+        /// 已读消息
+        /// </summary>
+        /// <returns></returns>
         public ActionResult ShowHasReadMessage()
         {
             var loginUID = UILoginHelper.GetUIDFromHttpContext(HttpContext);
@@ -39,6 +51,11 @@ namespace WebBookmarkUI.Controllers
         }
 
 
+        /// <summary>
+        /// 展示消息内容
+        /// </summary>
+        /// <param name="messageID"></param>
+        /// <returns></returns>
         public ActionResult ShowMessageContent(long messageID)
         {
             var model = BizMessageInfo.LoadByMessageID(messageID);

@@ -9,6 +9,9 @@ using WebBookmarkUI.Models;
 
 namespace WebBookmarkUI.Controllers
 {
+    /// <summary>
+    /// 探索/发现
+    /// </summary>
     public class InterestRecommendController : Controller
     {
         //
@@ -19,7 +22,11 @@ namespace WebBookmarkUI.Controllers
             return View();
         }
 
-
+        /// <summary>
+        /// 搜索用户
+        /// </summary>
+        /// <param name="nameOrEmail"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult SearchUser(string nameOrEmail)
         {
@@ -43,6 +50,11 @@ namespace WebBookmarkUI.Controllers
             return PartialView("SearchUser", lstUserInfoModel);
         } 
 
+        /// <summary>
+        /// 关注用户
+        /// </summary>
+        /// <param name="beFollowUserID"></param>
+        /// <returns></returns>
         public ActionResult FollowUser(long beFollowUserID)
         {
             BizResultInfo result = new BizResultInfo();
@@ -80,6 +92,12 @@ namespace WebBookmarkUI.Controllers
 
         }
 
+
+        /// <summary>
+        /// 取消关注用户
+        /// </summary>
+        /// <param name="beFollowUserID"></param>
+        /// <returns></returns>
         public ActionResult UnFollowUser(long beFollowUserID)
         {
             BizResultInfo result = new BizResultInfo();
@@ -95,6 +113,11 @@ namespace WebBookmarkUI.Controllers
         }
 
 
+        /// <summary>
+        /// 展示用户信息
+        /// </summary>
+        /// <param name="showUserInfoID"></param>
+        /// <returns></returns>
         public ActionResult ShowUserInfo(long showUserInfoID)
         {
             UIShowUserInfo showUserInfo = null;
@@ -119,6 +142,12 @@ namespace WebBookmarkUI.Controllers
             return PartialView("ShowUserInfo", showUserInfo);
         }
        
+        /// <summary>
+        /// 展示书签夹信息
+        /// </summary>
+        /// <param name="showUserInfoID"></param>
+        /// <param name="folderID"></param>
+        /// <returns></returns>
         public ActionResult ShowUserFolder(long showUserInfoID, long folderID = 0)
         {
             UIWebFolderInfo model = null;

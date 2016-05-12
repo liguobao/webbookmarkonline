@@ -9,6 +9,9 @@ using WebBookmarkUI.Models;
 
 namespace WebBookmarkUI.Controllers
 {
+    /// <summary>
+    /// 用户群组相关操作
+    /// </summary>
     public class GroupInfoController : Controller
     {
         //
@@ -242,7 +245,11 @@ namespace WebBookmarkUI.Controllers
             return View("ShowALLUserGroupList", lstUIUserGroupInfo);
         }
 
-
+        /// <summary>
+        /// 展示当前用户未通过审核的加群申请
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <returns></returns>
         public ActionResult ShowUserGroupListNotPass(long userID)
         {
             if (userID == 0)
@@ -560,9 +567,8 @@ namespace WebBookmarkUI.Controllers
 
 
         /// <summary>
-        /// 未通过审核的群组用户
+        /// 展示等待通过的用户加群申请
         /// </summary>
-        /// <param name="groupID"></param>
         /// <returns></returns>
         public ActionResult ShowUserAllGroupMessage()
         {

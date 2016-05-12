@@ -10,11 +10,15 @@ using WebBookmarkBo;
 
 namespace WebBookmarkUI.Controllers
 {
+    /// <summary>
+    /// 书签推荐
+    /// </summary>
     public class BookmarkRecommendController : Controller
     {
-        //
-        // GET: /BookmarkRecommend/
-
+        /// <summary>
+        /// 获取推荐给用户的书签数据
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             var loginUID = UILoginHelper.GetUIDFromHttpContext(HttpContext);
@@ -54,6 +58,12 @@ namespace WebBookmarkUI.Controllers
            
         }
 
+
+        /// <summary>
+        /// 获取相同域名的书签用户(非当前登录用户)
+        /// </summary>
+        /// <param name="bookmarkID"></param>
+        /// <returns></returns>
         public ActionResult ShowSameHostBookmarkList(long bookmarkID)
         {
 

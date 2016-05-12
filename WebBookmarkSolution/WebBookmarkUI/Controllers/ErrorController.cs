@@ -6,6 +6,9 @@ using System.Web.Mvc;
 
 namespace WebBookmarkUI.Controllers
 {
+    /// <summary>
+    /// 错误重定向页面
+    /// </summary>
     public class ErrorController : Controller
     {
         //

@@ -9,11 +9,16 @@ using WebBookmarkUI.Models;
 
 namespace WebBookmarkUI.Controllers
 {
+    /// <summary>
+    /// 我的申请页面
+    /// </summary>
     public class ShowMyAllGroupController : Controller
     {
-        //
-        // GET: /ShowMyHasPassGroup/
-
+     
+        /// <summary>
+        /// 展示加入群组申请
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             var userID = UILoginHelper.GetUIDFromHttpContext(HttpContext);
@@ -57,6 +62,11 @@ namespace WebBookmarkUI.Controllers
             return View(lstUIUserGroupInfo);
         }
 
+        /// <summary>
+        /// 退出群组/撤销
+        /// </summary>
+        /// <param name="groupUserID"></param>
+        /// <returns></returns>
         public ActionResult QuitGroup(long groupUserID)
         {
             BizResultInfo result = new BizResultInfo();
@@ -88,7 +98,11 @@ namespace WebBookmarkUI.Controllers
             return Json(result);
         }
 
-
+        /// <summary>
+        /// 重新加入群组
+        /// </summary>
+        /// <param name="groupUserID"></param>
+        /// <returns></returns>
         public ActionResult AddToGroupAgain(long groupUserID)
         {
             BizResultInfo result = new BizResultInfo();
